@@ -16,7 +16,7 @@ var timer = document.getElementById("timer");
 
 var timeLeft = 60;
 var score, currentQuestionIndex;
-
+//creating an array of question and answer
 var QnA = [
     {
         question: "Javascript basics inclue?",
@@ -52,6 +52,7 @@ var QnA = [
 
     
 ]
+
 function startquiz(){
     console.log("started");
     startButton.classList.add("hide");
@@ -61,12 +62,16 @@ function startquiz(){
     nextQuestion();
     
 }
+//saving score in a local storage
 function saveScore() {
     localStorage.setItem("score", input.value + " - " + score)
     scoreBoard.setAttribute("class","hide");
     highscoreBoard.setAttribute("class", "container");
     document.getElementById("high").textContent = localStorage.getItem("score")
 }
+
+//a function with an if condition to access the elements/text contents of the Q&A array 
+
 function nextQuestion(){
     var lastAnswer = this.textContent;
     if(currentQuestionIndex !== 0){
@@ -93,7 +98,8 @@ function nextQuestion(){
         
 }
 
-
+/*a function that will be called when the quiz starts to set time/countdown in a condition until the amount of 
+time reaches 0 or all questions are attepted*/
 function startTimer() {
     var interval = setInterval(function(){
         timer.textContent = timeLeft;
@@ -111,7 +117,7 @@ function startTimer() {
     }, 1000)
 }
 
-
+//assigning an on click event lisner to the buttons
 startButton.addEventListener("click", startquiz)
 btnOne.addEventListener("click", nextQuestion);
 btnTwo.addEventListener("click", nextQuestion);
